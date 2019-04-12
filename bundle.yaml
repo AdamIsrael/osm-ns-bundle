@@ -1,0 +1,11 @@
+series: bionic
+applications:
+  ns:
+    charm: cs:~aisrael/ns
+    num_units: 1
+  vnf-policy:
+    charm: cs:~aisrael/vnf-policy
+    num_units: 1
+  vnf-user:
+    charm: cs:~aisrael/vnf-user
+    num_units: 1
