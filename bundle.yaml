@@ -1,4 +1,3 @@
-series: bionic
 applications:
   ns:
     charm: cs:~aisrael/ns

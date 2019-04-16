@@ -1,19 +1,23 @@
-# Prototype for Network Service Primitives
+# Network Service Primitives (Experimental)
 
 This bundle is composed of three charms:
+
 - ns, using the experimental `osm-ns` base layer, which allows a Network Service charm to orchestrate action execution across charms within a model.
 - vnf-user, which mimics a user database
 - vnf-policy, which mimics a policy management database
 
 
-## Use-case
+## Use-cases
 
-Consider charms that individually manage a user and policy database.
+A complex VNF may be composed of many individual components. Relations are used to handle repeatable operations efficiently, but what about operator-driven operations?
 
-In order to add a subscriber, you need to add the user and then set policy. You could manually execute the actions, but to do so in an automated fashion you need something that understands how to talk to both charms.
+This is the question what Network Service (NS) primitives aims to answer.
+
+Consider that you have a VNF that contains two charms: user management and policy. 
+
+In order to add a subscriber, you need to add the user and then their policy. You could manually execute the Service Primitives (Juju Actions), but to do so in an automated fashion you need something that understands how to talk to both charms.
 
 Enter the concept of a "Network Service" charm.
-
 
 # Workflow
 
@@ -41,12 +45,12 @@ If either action fails, `ns.add-user` will fail. Otherwise, it will return succe
 
 ### Example
 
-Once the three charms are deployed to Juju, you can use the below commands to manually execute the NS primitive, which is contained by the ns charm.
+Once this bundle is deployed to Juju, you can use the below commands to manually execute the NS primitive, which is contained in the ns charm.
 
 ```bash
 
 juju add-model ns-demo
-juju deploy cs:~aisrael/osm-ns-bundle/bundle.yaml
+juju deploy cs:~aisrael/bundle/osm-ns-bundle
 
 # Run the NS primitive
 $ juju run-action ns/0 add-user username=adam tariff=1 bw=2 qos=3
